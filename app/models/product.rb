@@ -12,5 +12,9 @@ class Product < ActiveRecord::Base
 
   def eligible_by_credit_score?(submission)
     submission.credit_score >= self.min_credit_score
-  end  
+  end 
+
+  def eligible_by_school?(submission)
+    self.lender.schools.include? submission.school
+  end 
 end
