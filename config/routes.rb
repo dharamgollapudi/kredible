@@ -3,6 +3,8 @@ Rails.application.routes.draw do
   root 'application#index'
 
   namespace :api do
+    resources :schools, only: [:index]
+    
     resources :submissions, only: [:create, :show] do
       resources :offers, only: [:index]
     end
