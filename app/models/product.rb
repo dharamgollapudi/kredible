@@ -5,4 +5,8 @@ class Product < ActiveRecord::Base
     submission.income >= self.min_income &&
     submission.credit_score >= self.min_credit_score
   end
+
+  def eligible_by_income?(submission)
+    submission.income >= self.min_income
+  end  
 end

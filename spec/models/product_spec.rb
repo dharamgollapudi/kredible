@@ -11,7 +11,7 @@ RSpec.describe Product, type: :model do
 				@product = FactoryGirl.create(:product, lender: @lender, min_income: 100_000)
 				@submission = FactoryGirl.create(:submission, income: 100_000)
 
-				expect(@product.eligible_by_income?(@submission)).to be_true
+				expect(@product.eligible_by_income?(@submission)).to be_truthy
 			end
 		end	
 
@@ -20,7 +20,7 @@ RSpec.describe Product, type: :model do
 				@product = FactoryGirl.create(:product, lender: @lender, min_income: 100_000)
 				@submission = FactoryGirl.create(:submission, income: 90_000)
 
-				expect(@product.eligible_by_income?(@submission)).to be_false
+				expect(@product.eligible_by_income?(@submission)).to be_falsey
 			end
 		end		
 	end	
