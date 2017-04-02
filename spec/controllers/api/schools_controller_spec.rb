@@ -15,12 +15,6 @@ RSpec.describe Api::SchoolsController, type: :controller do
       expect(response).to have_http_status(200)
     end
 
-    it "renders the index template" do
-      get :index
-
-      expect(response).to render_template("index")
-    end
-
     it "assigns all of the schools into @schools" do
       get :index
 

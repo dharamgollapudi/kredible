@@ -1,5 +1,5 @@
 class Submission < ActiveRecord::Base
-  belongs_to :school
+  belongs_to :school, optional: true
   has_many :offers, dependent: :destroy
 
   def calculate_products!
@@ -12,4 +12,8 @@ class Submission < ActiveRecord::Base
       end
     end
   end
+
+  def school_name=(school_name)
+    self.school = School.find_by_name(school_name)
+  end  
 end

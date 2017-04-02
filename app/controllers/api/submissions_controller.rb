@@ -21,7 +21,8 @@ protected
       :ssn,
       :income,
       :credit_score,
-      :amount
+      :amount,
+      :school_name
     )
   end
 end

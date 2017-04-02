@@ -8,6 +8,11 @@ CredibleLite.Views.SubmissionsNew = Backbone.View.extend({
 
   render: function() {
     this.$el.html(this.template());
+    this.$("#school_name").autocomplete({
+      minLength: 3,
+      source: "/api/schools"
+    });
+
     return this;
   },
 
@@ -26,6 +31,7 @@ CredibleLite.Views.SubmissionsNew = Backbone.View.extend({
     submission.set("income", form.find("#income").val());
     submission.set("credit_score", form.find("#credit_score").val());
     submission.set("amount", form.find("#amount").val());
+    submission.set("school_name", form.find("#school_name").val());
 
     submission.save(null, {
       success: function() {
