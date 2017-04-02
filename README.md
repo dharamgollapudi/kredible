@@ -10,17 +10,17 @@ The baseline application uses only the entered income and credit_score to assess
 
 Your assignment is to add a new eligibility restriction based on the school the Borrower attended.
 
-- Create the models to represent the School and its relationship with the Lender;
-- Change the Submission model to reference the selected School;
-- Seed the db/seeds/schools.csv into the database (no need to load every field; just the ones you think are important for the problem);
-- Create a RESTful + JSON endpoint for the schools;
-- Allow the user to select their school in the Submission form;
-- Change Product.eligible? to match the selected School against the list of eligible Schools of a Lender;
+[x] Create the models to represent the School and its relationship with the Lender;
+[x] Change the Submission model to reference the selected School;
+[x] Seed the db/seeds/schools.csv into the database (no need to load every field; just the ones you think are important for the problem);
+[x] Create a RESTful + JSON endpoint for the schools;
+[x] Allow the user to select their school in the Submission form;
+[x] Change Product.eligible? to match the selected School against the list of eligible Schools of a Lender;
 
 Example of things that would be nice to have:
-- Create unit and/or integrated tests for the parts of the backend code relevant to the assignment;
-- Make the Schools endpoint accessible from different domains (CORS);
-- On the Submission form, use a UI component that offers autocompletion;
+[x] Create unit and/or integrated tests for the parts of the backend code relevant to the assignment;
+[x] Make the Schools endpoint accessible from different domains (CORS);
+[x] On the Submission form, use a UI component that offers autocompletion;
 - Improve the site UI/UX;
 
 The list of eligible Schools of each Lender can be defined randomly (during School list seed for example, via a rake task, or any other way), but the relationship must be persisted in the database.
