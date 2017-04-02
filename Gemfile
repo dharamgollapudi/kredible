@@ -11,6 +11,7 @@ gem 'jbuilder', '~> 2.5'
 
 # BE gems
 gem 'finance'
+gem 'rack-cors'
 
 # FE gems
 gem 'sass-rails', '~> 5.0'
