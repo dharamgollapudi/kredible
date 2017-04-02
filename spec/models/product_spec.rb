@@ -1,5 +1,27 @@
 require 'rails_helper'
 
 RSpec.describe Product, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+	before :each do 
+		@lender = FactoryGirl.create(:lender)
+	end
+
+	describe '#eligible_by_income?' do
+		context 'when submission income is >= product min income' do
+			it 'should return true' do
+				@product = FactoryGirl.create(:product, lender: @lender, min_income: 100_000)
+				@submission = FactoryGirl.create(:submission, income: 100_000)
+
+				expect(@product.eligible_by_income?(@submission)).to be_true
+			end
+		end	
+
+		context 'when submission income is < product min income' do
+			it 'should return true' do
+				@product = FactoryGirl.create(:product, lender: @lender, min_income: 100_000)
+				@submission = FactoryGirl.create(:submission, income: 90_000)
+
+				expect(@product.eligible_by_income?(@submission)).to be_false
+			end
+		end		
+	end	
 end
