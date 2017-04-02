@@ -57,3 +57,11 @@ Requires heroku toolbelt to be installed and configured.
 - ```heroku run rake db:migrate```
 - ```heroku run rake db:seed```
 - ```heroku open```
+
+### Testing
+
+- ```git clone https://github.com/dharamgollapudi/kredible.git```
+- ```cd kredible```
+- ```bundle install```
+- ```bundle exec rake db:create db:migrate db:test:prepare```
+- ```bundle exec rake spec```
