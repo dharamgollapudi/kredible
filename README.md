@@ -58,6 +58,8 @@ Requires heroku toolbelt to be installed and configured.
 - ```heroku run rake db:seed```
 - ```heroku open```
 
+Deployed at `https://kredible-backend.herokuapp.com/`
+
 ### Testing
 
 - ```git clone https://github.com/dharamgollapudi/kredible.git```
