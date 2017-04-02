@@ -1,6 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe Product, type: :model do
+	it { should belong_to(:lender) }
+	
 	before :each do 
 		@school1 = FactoryGirl.create(:school)
 		@school2 = FactoryGirl.create(:school)
