@@ -2,7 +2,9 @@ require 'rails_helper'
 
 RSpec.describe Product, type: :model do
 	before :each do 
-		@lender = FactoryGirl.create(:lender)
+		@school1 = FactoryGirl.create(:school)
+		@school2 = FactoryGirl.create(:school)
+		@lender = FactoryGirl.create(:lender, schools: [@school1])
 	end
 
 	describe '#eligible?' do
@@ -36,7 +38,7 @@ RSpec.describe Product, type: :model do
 		end	
 
 		context 'when submission income is < product min income' do
-			it 'should return true' do
+			it 'should return false' do
 				@product = FactoryGirl.create(:product, lender: @lender, min_income: 100_000)
 				@submission = FactoryGirl.create(:submission, income: 90_000)
 
@@ -56,11 +58,31 @@ RSpec.describe Product, type: :model do
 		end	
 
 		context 'when submission credit score is < product min credit score' do
-			it 'should return true' do
+			it 'should return false' do
 				@product = FactoryGirl.create(:product, lender: @lender, min_credit_score: 800)
 				@submission = FactoryGirl.create(:submission, credit_score: 799)
 
 				expect(@product.eligible_by_credit_score?(@submission)).to be_falsey
+			end
+		end		
+	end
+
+	describe '#eligible_by_school?' do
+		context 'when submission school is one of lenders school' do
+			it 'should return true' do
+				@product = FactoryGirl.create(:product, lender: @lender, min_credit_score: 800)
+				@submission = FactoryGirl.create(:submission, credit_score: 800, school: @school1)
+
+				expect(@product.eligible_by_school?(@submission)).to be_truthy
+			end
+		end	
+
+		context 'when submission school is not one of lenders school' do
+			it 'should return false' do
+				@product = FactoryGirl.create(:product, lender: @lender, min_credit_score: 800)
+				@submission = FactoryGirl.create(:submission, credit_score: 799, school: @school2)
+
+				expect(@product.eligible_by_school?(@submission)).to be_falsey
 			end
 		end		
 	end	
