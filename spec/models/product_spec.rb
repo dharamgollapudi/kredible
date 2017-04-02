@@ -5,6 +5,26 @@ RSpec.describe Product, type: :model do
 		@lender = FactoryGirl.create(:lender)
 	end
 
+	describe '#eligible?' do
+		context 'when the submission eligible_by_income? && eligible_by_credit_score?' do
+			it 'should return true' do
+				@product = FactoryGirl.create(:product, lender: @lender, min_income: 100_000, min_credit_score: 800)
+				@submission = FactoryGirl.create(:submission, income: 100_000, credit_score: 800)
+
+				expect(@product.eligible?(@submission)).to be_truthy	
+			end	
+		end	
+
+		context 'when the submission is not eligible_by_income? || is not eligible_by_credit_score?' do
+			it 'should return false' do
+				@product = FactoryGirl.create(:product, lender: @lender, min_income: 100_000, min_credit_score: 800)
+				@submission = FactoryGirl.create(:submission, income: 90_000, credit_score: 799)
+
+				expect(@product.eligible?(@submission)).to be_falsey	
+			end	
+		end	
+	end	
+
 	describe '#eligible_by_income?' do
 		context 'when submission income is >= product min income' do
 			it 'should return true' do
