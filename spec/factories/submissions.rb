@@ -1,5 +1,7 @@
 FactoryGirl.define do
   factory :submission do
+    school
+    
     name         { Faker::Name.name                       }
     phone        { Faker::PhoneNumber.cell_phone          }
     address      { Faker::Address.street_address          }

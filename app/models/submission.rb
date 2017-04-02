@@ -1,4 +1,5 @@
 class Submission < ActiveRecord::Base
+  belongs_to :school
   has_many :offers, dependent: :destroy
 
   def calculate_products!
