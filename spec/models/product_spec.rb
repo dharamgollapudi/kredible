@@ -24,4 +24,24 @@ RSpec.describe Product, type: :model do
 			end
 		end		
 	end	
+
+	describe '#eligible_by_credit_score?' do
+		context 'when submission credit score is >= product min credit score' do
+			it 'should return true' do
+				@product = FactoryGirl.create(:product, lender: @lender, min_credit_score: 800)
+				@submission = FactoryGirl.create(:submission, credit_score: 800)
+
+				expect(@product.eligible_by_credit_score?(@submission)).to be_truthy
+			end
+		end	
+
+		context 'when submission credit score is < product min credit score' do
+			it 'should return true' do
+				@product = FactoryGirl.create(:product, lender: @lender, min_credit_score: 800)
+				@submission = FactoryGirl.create(:submission, credit_score: 799)
+
+				expect(@product.eligible_by_credit_score?(@submission)).to be_falsey
+			end
+		end		
+	end	
 end
