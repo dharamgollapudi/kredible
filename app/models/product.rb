@@ -3,7 +3,8 @@ class Product < ActiveRecord::Base
 
   def eligible?(submission)
     eligible_by_income?(submission) &&
-    eligible_by_credit_score?(submission)
+    eligible_by_credit_score?(submission) &&
+    eligible_by_school?(submission)
   end
 
   def eligible_by_income?(submission)
